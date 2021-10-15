@@ -1,0 +1,18 @@
+#!/bin/bash
+PREFIX=$1
+NAME=$2
+cat <<EOF
+#!/bin/bash
+. ./authn
+JSON=\$1
+ADDL=\$2
+if [[ -z "$ADDL" ]] ; then
+   ADDL="--header,Content-Type: application/json,--header,Accept: application/json"
+fi
+IFS=',' read -r -a array <<< "\$ADDL"
+curl \${OPT} -s -k -H "\$AUTHN" \\
+   -X POST \\
+   "\${array[@]}" \\
+   -d @\$JSON \\
+   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}"
+EOF
