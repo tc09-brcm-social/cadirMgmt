@@ -6,14 +6,18 @@ cat <<EOF
 . ./authn
 NAME=\$1
 JSON=\$2
-ADDL=\$3
+QUERY=\$3
+ADDL=\$4
+if [[ ! -z "\$QUERY" ]] ; then
+   QUERY=?"\$QUERY"
+fi
 if [[ -z "\${ADDL}" ]]; then
-   ADDL="--header,Accept: application/json,--header,Content-Type: application/json"
+   ADDL="--header,Accept: application/json,--header,Content-Type: application/json,-d"
 fi
 IFS=',' read -r -a array <<< "\$ADDL"
 curl \${OPT} -s -k -H "\$AUTHN" \\
    -X PUT \\
    "\${array[@]}" \\
-   -d @\$JSON \\
-   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}/\${NAME}"
+   @\$JSON \\
+   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}/\${NAME}\${QUERY}"
 EOF

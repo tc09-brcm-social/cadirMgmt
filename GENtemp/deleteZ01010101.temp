@@ -11,7 +11,11 @@ NAME=\$1
 CHILD=\$2
 GCHILD=\$3
 G4CHILD=\$4
-ADDL=\$5
+QUERY=\$5
+ADDL=\$6
+if [[ ! -z "\$QUERY" ]] ; then
+   QUERY=?"\$QUERY"
+fi
 if [[ -z "\${ADDL}" ]] ; then
    ADDL="--header,Accept: application/json"
 fi
@@ -19,5 +23,5 @@ IFS=',' read -r -a array <<< "\$ADDL"
 curl \${OPT} -s -k -H "\$AUTHN" \\
    -X DELETE \\
    "\${array[@]}" \\
-   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}/\${NAME}/${CHILD}/\${CHILD}/${GCHILD}/\${GCHILD}/${G4CHILD}/\${G4CHILD}"
+   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}/\${NAME}/${CHILD}/\${CHILD}/${GCHILD}/\${GCHILD}/${G4CHILD}/\${G4CHILD}\${QUERY}"
 EOF

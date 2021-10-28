@@ -12,14 +12,18 @@ CHILD=\$2
 GCHILD=\$3
 G4CHILD=\$4
 JSON=\$5
-ADDL=\$6
+QUERY=\$6
+ADDL=\$7
+if [[ ! -z "\$QUERY" ]] ; then
+   QUERY=?"\$QUERY"
+fi
 if [[ -z "\${ADDL}" ]] ; then
-   ADDL="--header,Accept: application/json,--header,Content-Type: application/json"
+   ADDL="--header,Accept: application/json,--header,Content-Type: application/json,-d"
 fi
 IFS=',' read -r -a array <<< "\$ADDL"
 curl \${OPT} -s -k -H "\$AUTHN" \\
    -X POST \\
    "\${array[@]}" \\
-   -d @\$JSON \\
-   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}/\${NAME}/${CHILD}/\${CHILD}/${GCHILD}/\${GCHILD}/${G4CHILD}/\${G4CHILD}"
+   @\$JSON \\
+   "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}/\${NAME}/${CHILD}/\${CHILD}/${GCHILD}/\${GCHILD}/${G4CHILD}/\${G4CHILD}\${QUERY}"
 EOF
