@@ -4,19 +4,17 @@ NAME=$2
 cat <<EOF
 #!/bin/bash
 . ./authn
-JSON=\$1
-QUERY=\$2
-ADDL=\$3
+QUERY=\$1
+ADDL=\$2
 if [[ ! -z "\$QUERY" ]] ; then
    QUERY=?"\$QUERY"
 fi
-if [[ -z "$ADDL" ]] ; then
-   ADDL="--header,Content-Type: application/json,--header,Accept: application/json,-d"
+if [[ -z "\$ADDL" ]] ; then
+   ADDL="--header,Content-Type: application/json,--header,Accept: application/json"
 fi
 IFS=',' read -r -a array <<< "\$ADDL"
 curl \${OPT} -s -k -H "\$AUTHN" \\
    -X POST \\
    "\${array[@]}" \\
-   @\$JSON \\
    "https://\${RESTHOST}:\${RESTPORT}${PREFIX}${NAME}\${QUERY}"
 EOF
