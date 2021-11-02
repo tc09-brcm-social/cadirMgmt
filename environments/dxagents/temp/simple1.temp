@@ -1,0 +1,24 @@
+#!/bin/bash
+NAME=$1
+HOST=$2
+PORT=$3
+CLIENTPEM=$4
+CLIENTKEY=$5
+CAPEM=$6
+cat <<EOF
+{
+  "name": "$NAME",
+  "host": "$HOST",
+  "port": "$PORT",
+  "description": "$HOST dxagent",
+EOF
+echo -n '  "clientCertPem": "'
+awk -v ORS='\\n' '1' "$CLIENTPEM"
+echo '",'
+echo -n '  "clientKeyPem": "'
+awk -v ORS='\\n' '1' "$CLIENTKEY"
+echo '",'
+echo -n '  "caCertPem": "'
+awk -v ORS='\\n' '1' "$CAPEM"
+echo '"'
+echo "}"
