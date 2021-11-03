@@ -1,3 +1,6 @@
+# environments/dxagents
+* about.sh envName dxagentName -- output a JSON object that
+	* contains the version of the dxagent
 * cleanse.sh -- cleansing the JSON data from stdin for create.sh/update.sh
 * create.sh envName JSONFile -- create a dxagent in an environment
 	* using a JSON File
