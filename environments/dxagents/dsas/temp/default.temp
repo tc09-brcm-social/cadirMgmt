@@ -1,0 +1,168 @@
+#!/bin/bash
+NAME=$1
+LDAPHOST=$2
+LDAPPORT=$3
+LDAPPORTA=$(expr $LDAPPORT + 1)
+PREFIX="o=${NAME}"
+RANDOM=$$
+cat <<EOF
+{
+  "config": {
+    "accessControls": [
+      "default.dxc"
+    ],
+    "knowledge": [
+      {
+        "auth-levels": [
+          "anonymous",
+          "clear-password"
+        ],
+        "console-port": $LDAPPORTA,
+        "credits": 1000000,
+        "disp-psap": "DISP",
+        "dsa-flags": [
+          "multi-write"
+        ],
+        "dsa-name": "cn=${NAME},${PREFIX}",
+        "dsa-password": "${NAME}${RANDOM}",
+        "dsp-idle-time": 600,
+        "interface": [
+          {
+            "address": "${LDAPHOST}",
+            "family": "tcp",
+            "port": $LDAPPORT
+          }
+        ],
+        "name": "${NAME}",
+        "prefix": "${PREFIX}",
+        "remote-console-port": 0,
+        "remote-console-ssl": false,
+        "snmp-port": $LDAPPORT
+      }
+    ],
+    "limits": {
+      "cpu-starvation-threshold": 5,
+      "credits": 1000000,
+      "max-bind-time": 0,
+      "max-cache-index-size": 0,
+      "max-op-size": 10000,
+      "max-op-time": 600,
+      "max-pdu-size": 0,
+      "max-persistent-searches": 10,
+      "max-users": 255,
+      "multi-write-dsp-idle-time": 0,
+      "multi-write-group-credit": 0,
+      "multi-write-outstanding-ops": 10,
+      "multi-write-queue": 20000,
+      "multi-write-retry-time": 60,
+      "user-idle-time": 3600
+    },
+    "logging": {
+      "alarm-log": "logs/\$s_alarm.log",
+      "alarm-log-max-lines": 0,
+      "alert-log-max-lines": 0,
+      "auth-trap": false,
+      "connect-log-max-lines": 0,
+      "diag-log": "logs/\$s_diag.log",
+      "diag-log-max-lines": 0,
+      "multi-write-error-trap": false,
+      "op-error-trap": false,
+      "password-suspended-trap": false,
+      "query-log-advanced": [
+        "none"
+      ],
+      "query-log-max-lines": 0,
+      "rollover-alarm-log": false,
+      "rollover-trace-log": false,
+      "stats-log": "logs/\$s_stats.log",
+      "stats-log-max-lines": 0,
+      "summary-log": "logs/\$s_summary.log",
+      "summary-log-max-lines": 0,
+      "time-log-max-lines": 0,
+      "time-log-search-threshold": 0,
+      "time-log-update-threshold": 0,
+      "trace": [
+        "error"
+      ],
+      "trace-log": "logs/\$s_trace.log",
+      "trace-log-max-lines": 0,
+      "trap-on-update": false,
+      "update-log-max-lines": 0,
+      "update-log-show-all-values": false,
+      "update-log-show-values": false,
+      "warn-log": "logs/\$s_warn.log",
+      "warn-log-max-lines": 0
+    },
+    "passwordPolicies": {
+      "password-policy": false
+    },
+    "schema": [
+      "default.dxg"
+    ],
+    "server": {
+      "cache-no-scan": false,
+      "dxgrid-backup-location": "data",
+      "dxgrid-db-location": "data",
+      "dxgrid-db-size": 50,
+      "dxgrid-tx-location": "data",
+      "lookup-cache": true,
+      "multi-write-disp-recovery": true,
+      "use-rdn-index": false
+    },
+    "settings": {
+      "add-entrydn": false,
+      "add-entryuuid": false,
+      "add-oc-parents": false,
+      "alias-integrity": true,
+      "allow-binds": true,
+      "allow-native-prefix-reauthentication": false,
+      "always-chain-down": false,
+      "busy-for-referral": false,
+      "cache-search-bias": 0,
+      "dereference-alias-on-bind": false,
+      "disable-client-binds": false,
+      "disable-hp-search-scope-cc": false,
+      "disable-transaction-log": false,
+      "disable-transaction-log-flush": false,
+      "dn-substring-match": false,
+      "dsp-link-count": 1,
+      "dxconsole-connect-alert": false,
+      "dxgrid-queue": true,
+      "force-encrypt-anon": false,
+      "force-encrypt-auth": false,
+      "hold-ldap-connections": false,
+      "ignore-name-bindings": false,
+      "ignore-single-value-check": false,
+      "isolate-multi-write-group": false,
+      "limit-search-exceptions-browse": false,
+      "mimic-netscape-for-siteminder": false,
+      "modify-on-add": false,
+      "multi-casting": true,
+      "multi-write-serial": false,
+      "op-attrs": true,
+      "password-storage": "ssha-512",
+      "persistent-search": false,
+      "prune-oc-parents": false,
+      "rename-check-oc": true,
+      "return-oc-parents": false,
+      "route-non-compliant-ldap-error-codes": false,
+      "ssl-auth-bypass-entry-check": false,
+      "stop-dsa-on-disk-error": "none",
+      "tcp-keep-alive": 0,
+      "transparent-routing": false,
+      "trap-on-update-verbose": false,
+      "use-roles": false,
+      "user-threads": 8,
+      "wait-for-multiwrite": false
+    },
+    "ssl": {
+      "ca-file": "config/ssld/trusted.pem",
+      "cert-dir": "config/ssld/personalities",
+      "fips": false,
+      "protocol": "ssl"
+    }
+  },
+  "name": "${NAME}",
+  "status": "stopped"
+}
+EOF

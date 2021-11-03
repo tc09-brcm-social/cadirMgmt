@@ -1,0 +1,80 @@
+#!/bin/bash
+# https://techdocs.broadcom.com/us/en/symantec-security-software/identity-security/directory/14-1/administrating/dsas.html#concept.dita_c1f194d8a8e562963568f5bc25cb93e92bd58928_HowtocreateaRouterDSA
+NAME=$1
+LDAPHOST=$2
+LDAPPORT=$3
+LDAPPORTA=$(expr $LDAPPORT + 1)
+cat <<EOF
+{
+  "config": {
+    "accessControls": [
+      "default.dxc"
+    ],
+    "knowledge": [
+      {
+        "auth-levels": [
+          "anonymous",
+          "clear-password"
+        ],
+        "console-port": ${LDAPPORTA},
+        "disp-psap": "DISP",
+        "dsa-name": "cn=${NAME}",
+        "dsa-password": "${NAME}$$",
+        "interface": [
+          {
+            "address": "${LDAPHOST}",
+            "family": "tcp",
+            "port": ${LDAPPORT}
+          }
+        ],
+        "name": "${NAME}",
+        "prefix": "",
+        "snmp-port": ${LDAPPORT},
+        "trust-flags": [
+          "trust-conveyed-originator"
+          ]
+      }
+    ],
+    "limits": {
+      "max-users": 255,
+      "max-op-size": 10000,
+      "multi-write-queue": 20000,
+      "max-bind-time": 0,
+      "user-idle-time": 3600,
+      "max-op-time": 600
+    },
+    "logging": {
+      "trace": [
+        "error"
+      ],
+      "trace-log": "logs/\$s_trace.log",
+      "warn-log": "logs/\$s_warn.log",
+      "stats-log": "logs/\$s_stats.log",
+      "diag-log": "logs/\$s_diag.log",
+      "summary-log": "logs/\$s_summary.log"
+    },
+    "passwordPolicies": {
+      "password-policy": false
+    },
+    "schema": [
+      "default.dxg"
+    ],
+    "server": {
+      "dxgrid-db-size": 0
+    },
+    "settings": {
+      "alias-integrity": true,
+      "multi-casting": true,
+      "always-chain-down": false,
+      "allow-binds": true,
+      "ssl-auth-bypass-entry-check": false
+    },
+    "ssl": {
+      "ca-file": "config/ssld/trusted.pem",
+      "cert-dir": "config/ssld/personalities"
+    }
+  },
+  "name": "${NAME}",
+  "status": "stopped"
+}
+EOF
