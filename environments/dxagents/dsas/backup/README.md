@@ -1,2 +1,2 @@
-# environments/dxagents/dsas/onlinebackups
+# environments/dxagents/dsas/backup
 * trigger.sh envName dxagentName DSAName -- trigger DSA onlinebackup
