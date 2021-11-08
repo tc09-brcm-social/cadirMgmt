@@ -15,4 +15,4 @@ if [ "$STATUS" -ne 0 ] ; then
     echo "$EXIST"
     exit "$STATUS"
 fi
-echo "$EXIST" | ./jq '.installationInfo | fromjson' 
+echo "$EXIST" | ./jq -r '.installationInfo' 
