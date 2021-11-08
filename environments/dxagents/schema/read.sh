@@ -10,4 +10,4 @@ if [[ -z "$CHILD" ]] ; then
     ./jq -n ' . + {"message": "dxagent name is required", "statusCode": 404}'
     exit 1
 fi
-    bash "${DIRNAME}/coreZ01010/get.sh" "$ENVNAME" "$CHILD" | ./jq 'fromjson'
+    bash "${DIRNAME}/coreZ01010/get.sh" "$ENVNAME" "$CHILD" | ./jq -r '.'
