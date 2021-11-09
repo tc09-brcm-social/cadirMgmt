@@ -1,0 +1,11 @@
+#!/bin/bash
+HOST=$1
+PORT=$2
+FNAME=$3
+cat <<EOF
+#!/bin/bash
+DXAGENTC=${FNAME}
+AUTHN="--key ./${FNAME}.key --cert ./${FNAME}.pem"
+RESTHOST=$HOST
+RESTPORT=$PORT
+EOF

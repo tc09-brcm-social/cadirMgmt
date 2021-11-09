@@ -1,4 +1,6 @@
 # environments/dxagents/temp
+* dxagentauthn.temp HOST PORT baseFileName -- template to create the
+	* authentication module for dxagent RestAPI
 * simple.temp NAME HOST CLIENTPEM CLIENTKEY CAPEM -- template to create a dxagent
 	* name needs to be unique within the environment
 	* host needs to match the CN for the certificate the dxagent uses
