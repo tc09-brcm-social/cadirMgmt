@@ -7,8 +7,8 @@
 	* in order to delete all data files on the server.
 * exist.sh envName dxagentName DSAName optionalAttrs -- exit code 1
 	* when not exist, otherwise same as read.sh
-* list.sh envName dxagentName -- use exist.sh to determine exit code
 * emptydb.sh envName dxagentName DSAName -- emptydb of a stopped DSA
+* list.sh envName dxagentName -- use exist.sh to determine exit code
 * list.sh envName dxagentName DSAName -- use exist.sh to determine
 	* the exit code, output an array of DSAs
 * maketemp.sh envName dxagentName DSAName -- use exist.sh to determine
