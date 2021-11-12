@@ -5,3 +5,7 @@
 	* It is recommended to run this example on a new
 	* Directory server right after the dxserver, dxagent, and
 	* Directory Manager are installed.
+* defdata -- to obtain the JSON object of the default DATA DSA
+	* created by the base example.
+* defrouter -- to obtain the JSON object of the default Router DSA
+	* created by the base example.
