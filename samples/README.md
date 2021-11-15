@@ -15,3 +15,5 @@
 	* connectivity information available for other environments.
 * smuserjson -- outputs a sample SiteMinder User Directory DSA JSON payload
 	* by default, it uses defdata to start building the payload
+* smpsjson -- outputs a sample SiteMinder Policy Store DSA JSON payload
+	* by default, it uses defdata to start building the payload
