@@ -17,3 +17,5 @@
 	* by default, it uses defdata to start building the payload
 * smpsjson -- outputs a sample SiteMinder Policy Store DSA JSON payload
 	* by default, it uses defdata to start building the payload
+* smssjson -- outputs a sample SiteMinder Session Store DSA JSON payload
+	* by default, it uses defdata to start building the payload
