@@ -8,6 +8,8 @@
 * exist.sh envName dxagentName DSAName optionalAttrs -- exit code 1
 	* when not exist, otherwise same as read.sh
 * emptydb.sh envName dxagentName DSAName -- emptydb of a stopped DSA
+* jsetsettings.sh AttrName AttrValue -- set settings attribute value
+	* .config.settings.AttrName = AttrValue
 * junsetpeers.sh -- expects a DSA JSON payload and removes
 	* the DSA peers
 * list.sh envName dxagentName -- use exist.sh to determine exit code
