@@ -13,3 +13,5 @@
 	* When there are multiple dxagent machines,
 	* registering them on this same environment will make dxagent
 	* connectivity information available for other environments.
+* smuserjson -- outputs a sample SiteMinder User Directory DSA JSON payload
+	* by default, it uses defdata to start building the payload

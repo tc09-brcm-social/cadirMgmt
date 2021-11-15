@@ -1,0 +1,145 @@
+#!/bin/bash
+PREFIX=$1
+PASSWORD=$2
+if [[ ! -z "$PREFIX" ]] ; then
+    PREFIX=",$PREFIX"
+fi
+if [ -z "$PASSWORD" ] ; then
+    PASSWORD=P@ssw0rd!
+fi
+cat <<EOF
+version: 1
+
+dn: ou=Admins${PREFIX}
+objectClass: organizationalUnit
+objectClass: top
+ou: Admins
+createTimestamp: 20171002210714.695Z
+modifyTimestamp: 20171002210714.695Z
+
+dn: uid=bjones,ou=Admins${PREFIX}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: bjones
+cn: bjones
+sn: Jones
+givenName: Ben
+createTimestamp: 20171002210904.774Z
+userPassword: ${PASSWORD}
+departmentNumber: Admin
+
+dn: uid=dxadmin,ou=Admins${PREFIX}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: dxadmin
+cn: Directory
+sn: Admin
+createTimestamp: 20171002211016.557Z
+modifyTimestamp: 20171002211449.892Z
+userPassword: ${PASSWORD}
+
+dn: uid=smadmin,ou=Admins${PREFIX}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: smadmin
+cn: SiteMinder
+sn: Admin
+createTimestamp: 20171002210904.774Z
+userPassword: ${PASSWORD}
+givenName: smadmin
+
+dn: ou=CA Directory${PREFIX}
+objectClass: top
+objectClass: organizationalUnit
+ou: CA Directory
+createTimestamp: 20180513215058.847Z
+
+dn: uid=rsmith,ou=CA Directory${PREFIX}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: rsmith
+cn: rsmith
+givenName: Robert
+sn: Smith
+userPassword: ${PASSWORD}
+createTimestamp: 20180513215258.158Z
+departmentNumber: Admin
+
+dn: ou=Departments${PREFIX}
+objectClass: top
+objectClass: organizationalUnit
+ou: Departments
+createTimestamp: 20180523142724.262Z
+
+dn: uid=AdminDept,ou=Departments${PREFIX}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: AdminDept
+modifyTimestamp: 20180523171544.346Z
+cn: AdminDept
+sn: system
+createTimestamp: 20180523142618.884Z
+
+dn: uid=Dept,ou=Departments${PREFIX}
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+uid: Dept
+sn: system
+createTimestamp: 20180523171617.784Z
+cn: Dept
+
+dn: uid=EndUserDept,ou=Departments${PREFIX}
+objectClass: inetOrgPerson
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+uid: EndUserDept
+sn: system
+createTimestamp: 20180523142645.967Z
+cn: EndUserDept
+modifyTimestamp: 20180523171555.819Z
+
+dn: uid=noreply,ou=Departments${PREFIX}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: noreply
+cn: noreply
+sn: system
+createTimestamp: 20180523142340.333Z
+modifyTimestamp: 20180523142822.137Z
+
+dn: ou=Users${PREFIX}
+objectClass: organizationalUnit
+objectClass: top
+ou: Users
+createTimestamp: 20171002210147.842Z
+modifyTimestamp: 20171002210147.842Z
+
+dn: uid=jgreen,ou=Users${PREFIX}
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: jgreen
+cn: jgreen
+sn: Green
+givenName: Joe
+createTimestamp: 20171002210553.373Z
+userPassword: ${PASSWORD}
+departmentNumber: EndUser
+
+EOF
