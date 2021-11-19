@@ -8,6 +8,12 @@
 * exist.sh envName dxagentName DSAName optionalAttrs -- exit code 1
 	* when not exist, otherwise same as read.sh
 * emptydb.sh envName dxagentName DSAName -- emptydb of a stopped DSA
+* jmaketemp2.sh -- make a DSA template from the DSA JSON payload
+	* it invokes cleanse.sh to clean up the DSA payload,
+	* junsetpeers to remove existing DSA peers and
+	* finally creates a DSA template takes
+	* NAME LDAPHOST LDAPPORT
+	* parameters
 * jsetsettings.sh AttrName AttrValue -- set settings attribute value
 	* .config.settings.AttrName = AttrValue
 * junsetpeers.sh -- expects a DSA JSON payload and removes
