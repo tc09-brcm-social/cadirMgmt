@@ -9,6 +9,8 @@
 	* created by the base example.
 * defrouter -- to obtain the JSON object of the default Router DSA
 	* created by the base example.
+* envdxagent -- create a dxagent in a given environmet
+	* using the info registered in the registrar envionment
 * registrar -- to register an dxagent on the registrar environment
 	* When there are multiple dxagent machines,
 	* registering them on this same environment will make dxagent
