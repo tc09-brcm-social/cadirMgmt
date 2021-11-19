@@ -8,7 +8,7 @@ fi
 . "$MYPATH/env.shlib"
 VER=$(bash utils/curlver.sh)
 if [[ "$VER" < "$TESTEDCURL" ]]; then
-    >&2 echo "$0 requies curl version newer than $TESTEDCURL"
+    >&2 echo "$0 curl version $VER needs to be newer than $TESTEDCURL but not"
     exit 1
 fi
 ADDL="--header,Accept: application/json,-H,Content-Type: multipart/form-data,-F,uploadedFile=@${LDIF}"
