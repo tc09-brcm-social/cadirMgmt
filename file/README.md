@@ -8,3 +8,5 @@ in the future, it is encouraged to port it here again.
 * file_upload.sh LDIFFile: upload the LDIF file to a holding area
 	* This holding area is actually under
 	* the ~/../management-ui/upload of the dsa user
+	* file_upload.sh checks curl version as older curl
+	* does not work.
