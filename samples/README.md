@@ -17,6 +17,7 @@
 	* connectivity information available for other environments.
 * registrarDXA -- output the JSON payload of a dxagent in
 	* the registrar environment 
+* routerdsa -- creates a Router DSA base on defrouter
 * smuserjson -- outputs a sample SiteMinder User Directory DSA JSON payload
 	* by default, it uses defdata to start building the payload
 * smpsjson -- outputs a sample SiteMinder Policy Store DSA JSON payload
