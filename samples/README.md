@@ -23,6 +23,10 @@
 	* sample DATA is loaded and both DSAs are started
 * smuserjson -- outputs a sample SiteMinder User Directory DSA JSON payload
 	* by default, it uses defdata to start building the payload
+* smps1 -- creates an environment with a dxagent, then four
+	* DSAs, router, policy store, session store, and user store.
+	* initialize the three data stores and not explicitly
+	* start them.
 * smpsjson -- outputs a sample SiteMinder Policy Store DSA JSON payload
 	* by default, it uses defdata to start building the payload
 * smssjson -- outputs a sample SiteMinder Session Store DSA JSON payload
