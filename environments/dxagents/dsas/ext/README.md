@@ -6,3 +6,6 @@
 	* object, return as an object, not array 
 * jshowpeers.sh -- show DSA peers in the DSA JSON object
 	* attriutes including name, status, and dsaPeers
+* rmpeers.sh ENVNAME DXA1 DSA1 DXA2 DSA2 -- attempt to remove
+	* bidirectional peers. It continues to operate
+	* even when a DSA no longer exists.
