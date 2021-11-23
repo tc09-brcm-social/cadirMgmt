@@ -21,6 +21,10 @@
 * routerdsa -- creates a Router DSA base on defrouter
 * routeduser -- creates a routed SiteMinder user DATA DSA/Router DSA
 	* sample DATA is loaded and both DSAs are started
+* selfreg -- self register to the registrar on the Directory Manager
+	* need to setup the authn to point to the Directory Manager first
+	* This is to run on the machine machine to be registered
+	* as the script would collect the local client pem and key
 * smuserjson -- outputs a sample SiteMinder User Directory DSA JSON payload
 	* by default, it uses defdata to start building the payload
 * smps1 -- creates an environment with a dxagent, then four
