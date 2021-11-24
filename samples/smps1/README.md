@@ -11,3 +11,4 @@ by a SiteMinder policy server.
 * unmake.sh - to remove
 * startall.sh -- to start all DSAs in this set
 * stopall.sh -- to stop all DSAs in this set
+* status.sh -- to check status of all DSAs in this set
