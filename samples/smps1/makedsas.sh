@@ -41,6 +41,8 @@ makeDSA() {
 cd "$MYPATH/${ROUTERJSONDIR}"
 ROUTERJSON=$(bash make.sh)
 cd "$HOMEDIR"
+ROUTERJSON=$(echo "$ROUTERJSON" | ./jq --argjson a "$ROUTERSCHEMA" \
+    '.config.schema = $a')
 makeDSA "$ENVNAME" "$DXANAME" "$ROUTERNAME" \
     "$ROUTERJSON" "$LDAPHOST" "$ROUTERPORT"
 #

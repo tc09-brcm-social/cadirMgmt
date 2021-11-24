@@ -9,3 +9,5 @@ by a SiteMinder policy server.
 	* and makedsas to make the whole set of scripts
 	* less clustered.
 * unmake.sh - to remove
+* startall.sh -- to start all DSAs in this set
+* stopall.sh -- to stop all DSAs in this set
