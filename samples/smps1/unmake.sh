@@ -15,7 +15,8 @@ rmDSA() {
     fi
     }
 
+# remove router first would avoid having remove write-precedence first
+rmDSA "$ENVNAME" "$DXANAME" "$ROUTERNAME"
 rmDSA "$ENVNAME" "$DXANAME" "$SMSSNAME"
 rmDSA "$ENVNAME" "$DXANAME" "$SMPSNAME"
 rmDSA "$ENVNAME" "$DXANAME" "$DATANAME"
-rmDSA "$ENVNAME" "$DXANAME" "$ROUTERNAME"
