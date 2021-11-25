@@ -20,7 +20,7 @@ if [ "$STATUS" -eq 0 ] ; then
     >&2 echo "DSA $NAME exits under $ENVNAME/$DXANAME, skipped ..."
 else
     cd "$MYPATH/${ROUTERJSONDIR}"
-    ROUTERJSON=$(bash make.sh)
+    ROUTERJSON=$(bash make.sh "$DXANAME")
     cd "$HOMEDIR"
     TMPL=$$.temp
     echo "$ROUTERJSON" | bash dsas/jmaketemp2.sh > "$TMPL"
@@ -45,7 +45,7 @@ else
     x=$(bash utils/setkeyifvalue.sh "$MYPATH/${DATAJSONDIR}/env.shlib" \
         DBSIZE "$DATADBSIZE")
     cd "$MYPATH/${DATAJSONDIR}"
-    USERJSON=$(bash make.sh)
+    USERJSON=$(bash make.sh "$DXANAME")
     cd "$HOMEDIR"
     TMPL=$$.temp
     echo "$USERJSON" |  bash dsas/jmaketemp2.sh > "$TMPL"
