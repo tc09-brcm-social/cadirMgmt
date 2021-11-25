@@ -1,10 +1,15 @@
 #!/bin/bash
 MYPATH=$(cd $(dirname "$0"); pwd)
+DXANAME=$1
+if [ -z "$DXANAME" ] ; then
+    >&2 echo "Usage: $0 DXANAME -- DXANAME required"
+    exit 1
+fi
 cd ../..
 HOMEDIR=$(pwd)
 . "$MYPATH"/env.shlib
 cd "$MYPATH/${JSONDIR}"
-JSON=$(bash make.sh)
+JSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 if [ -z "$DBSIZE" ] ; then
   DBSIZE=$(echo "$JSON" | ./jq -r '.config.server."dxgrid-db-size"')
