@@ -1,0 +1,23 @@
+#!/bin/bash
+ADMINCRED=$1
+USERCRED=$2
+RESTHOST=$3
+RESTPORT=$4
+SCIMPORT=$5
+if [[ -z "$RESTHOST" ]]; then
+    RESTHOST=localhost
+fi
+if [[ -z "$RESTPORT" ]]; then
+    RESTPORT=3000
+fi
+if [[ -z "$SCIMPORT" ]]; then
+    SCIMPORT=3100
+fi
+cat <<EOF
+#!/bin/bash
+AUTHN="authorization: Basic ${ADMINCRED}"
+RESTHOST=${RESTHOST}
+RESTPORT=${RESTPORT}
+SCIMAUTHN="Authorization: Basic ${USERCRED}"
+SCIMPORT=${SCIMPORT}
+EOF
