@@ -17,7 +17,7 @@ if [ "$STATUS" -eq 0 ] ; then
     exit
 fi
 cd "$MYPATH/${JSONDIR}"
-JSON=$(bash make.sh)
+JSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 TMPL=$$.temp
 if [ -z "$DBSIZE" ] ; then
