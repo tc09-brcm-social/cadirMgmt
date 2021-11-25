@@ -1,10 +1,15 @@
 #!/bin/bash
 MYPATH=$(cd $(dirname "$0"); pwd)
+DXANAME=$1
+if [ -z "$DXANAME" ] ; then
+    >&2 echo "Usage: $0 DXANAME -- DXANAME required"
+    exit 1
+fi
 cd ../..
 HOMEDIR=$(pwd)
 . "$MYPATH"/env.shlib
 cd "$MYPATH/${JSONDIR}"
-JSON=$(bash make.sh)
+JSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 ###
 # https://techdocs.broadcom.com/us/en/symantec-security-software/identity-security/siteminder/12-8/installing/install-a-policy-server/configure-ldap-directory-servers-as-policy-session-and-key-stores/configure-an-ldap-directory-server-as-a-policy-store/configure-a-ca-directory-policy-store.html
