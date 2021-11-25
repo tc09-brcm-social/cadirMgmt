@@ -1,28 +1,32 @@
-# samples/registrar
-In addition to the samples/base that creates the base environment,
-registrar environment is used to gather all managed dxagents.
-This registrar allow easier configurations across multiple dxagents.
+# samples/selfreg
+Other than the connectity to the Directory Manger UI,
+this is the beginning of using this Directory Manager RestAPI framework.
+This sample connects to the already configured Directory Manager
+to register an additional dxagent to the registrar environment.
+It also creates two default DSAs, one DATA, one Router, designed
+to be used to create other DSAs on the same dxagent.
 * Getting Started
-	* Modify the env.shlib to provide the connectivity
-	* information for the DXAGENT to be registered.
-	* This DXAGENT machine is assumed to have
-	* the dxserver, dxagent, and Diretory Manager installed.
-	* In addition, the samples/base should have been run on that machine.
-	* ADMINID - the admin ID to the Directory Manager UI being registered
-	* ADMINPASS - the password to the Directory Manager UI being registered
-	* HOST - IP/Host Name of the dxagent being registered
-	* PORT - Port number of the Directory Manager
-	* NAME - tends to be a short name for the dxagent
+	* Following the main README.md to meet the pre-requsites and
+	* establish the connectivity to the designated Directory Manager.
+	* Modify the env.shlib to provide NAME, a unique short name for
+	* this dxagent; DXAHOST, DXAPORT, the  machine name and port 
+	* the Directory Manager can resolve and connect to the dxagent;
+	* DXACLIENT, if you know the client name during the installation
+	* of the dxagent, if not make.sh script will attempt to determine
+	* the client name.
 	*
 	* run "bash make.sh" afterwards.
 * make.sh - to connect to the default Directory Manager
-	* to register an additional dxagent in the
-	* registrar environment.
-	* During the process, it connects to the 
-	* Directory Manager UI on the dxagent being registered
-	* to retrieve the default dxagent of the default environment
-	* then register it.
-* unmake.sh - to remove the dxagent from the
-	* registrar environment of the default Directory Manager
+	* to create the registrar environment if not yet exists and
+	* to register this additional dxagent in it.
+	* It also creates a default DATA and a default ROUTER DSAs.
+	*
+	* You may want to export the DXHOME environment variable
+	* before running the "bash make.sh".
+	* The DXHOME environment variable is usually set to
+	* the home directory of where the Directory is installed.
+* unmake.sh - to remove the default DATA and ROUTER DSAs,
+	* to remove the dxagent from the registrar environment
 	* When the number of the dxagents becomes 0,
 	* the registrar envionment is also removed.
+* defenv.shlib -- contains values used to create the DSAs.

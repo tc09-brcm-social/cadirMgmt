@@ -26,7 +26,7 @@ done
 if [ $COUNT == 1 ]; then
     >&2 echo Ready to modify "$MYPATH"/env.shlib
 #    echo "DXACLIENT=$DXACLIENT" >> env.shlib
-    bash utils/setkeyvalue.sh "$MYPATH"/env.shlib DXACLIENT "$DXACLIENT"
+    x=$(bash utils/setkeyvalue.sh "$MYPATH"/env.shlib DXACLIENT "$DXACLIENT")
 else
     >&2 echo This script change the env.shlib for installation specific
     >&2 echo when there is a single p12 file under the

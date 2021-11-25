@@ -1,0 +1,9 @@
+# https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=6
+# pick ports below 1024, hoping it will never start on Linux
+PORTR=272
+	# default router DSA starting port
+PORTD=$(expr $PORTR + 2)
+	# default data DSA starting port
+LDAPHOST=
+	# When set to no value, the host value of 
+	# the dxagent will be used.
