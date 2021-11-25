@@ -23,6 +23,10 @@
 	* DSAs, router, policy store, session store, and user store.
 	* initialize the three data stores and not explicitly
 	* start them.
+* smps2 -- creates an environment with two sets of dxagents
+	* and SiteMinder DSAs using smps1 and configures
+	* the configurations to allow the data DSAs to
+	* replicate to each other and load balance.
 * smpsjson -- outputs a sample SiteMinder Policy Store DSA JSON payload
 	* by default, it uses defdata to start building the payload
 * smssjson -- outputs a sample SiteMinder Session Store DSA JSON payload
