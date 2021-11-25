@@ -9,7 +9,7 @@
 * defdata -- to obtain the JSON object of the default DATA DSA
 	* through the dxagent in the registrar environment
 * defrouter -- to obtain the JSON object of the default Router DSA
-	* created by the base example.
+	* through the dxagent in the registrar environment
 * envdxagent -- create a dxagent in a given environmet
 	* using the info registered in the registrar envionment
 * registrar -- to register an dxagent on the registrar environment

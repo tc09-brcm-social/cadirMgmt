@@ -1,10 +1,14 @@
 #!/bin/bash
 MYPATH=$(cd $(dirname "$0"); pwd)
+DXANAME=$1
+if [ -z "$DXANAME" ] ; then
+    >&2 echo "Usage: $0 DXANAME -- DXANAME required"
+    exit 1
+fi
 . "${MYPATH}"/../env.shlib
 . "${MYPATH}"/env.shlib
 cd ../..
-ENVNAME=$BASEENVNAME$TEST
-DXANAME=$BASEDXAGENT$TEST
+ENVNAME=$REGISTRARENV$TEST
 VER=$(bash dxagents/about.sh "$ENVNAME" "$DXANAME" | \
       jq -r '.version' | awk '{print $2}')
 DSA=defrouter.${VER}${TEST}
