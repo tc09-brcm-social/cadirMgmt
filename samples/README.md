@@ -12,10 +12,6 @@
 	* through the dxagent in the registrar environment
 * envdxagent -- create a dxagent in a given environmet
 	* using the info registered in the registrar envionment
-* registrar -- to register an dxagent on the registrar environment
-	* When there are multiple dxagent machines,
-	* registering them on this same environment will make dxagent
-	* connectivity information available for other environments.
 * registrarDXA -- output the JSON payload of a dxagent in
 	* the registrar environment 
 * routerdsa -- creates a Router DSA base on defrouter
