@@ -1,9 +1,0 @@
-PORT=14000
-	# pick a starting port number for default DSA
-PORTR=$(expr $PORT + 389)
-	# default router DSA starting port
-PORTD=$(expr $PORT + 489)
-	# default data DSA starting port
-LDAPHOST=
-	# When set to no value, the host value of 
-	# the dxagent will be used.
