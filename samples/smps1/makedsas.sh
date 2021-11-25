@@ -39,7 +39,7 @@ makeDSA() {
 ## Router
 #
 cd "$MYPATH/${ROUTERJSONDIR}"
-ROUTERJSON=$(bash make.sh)
+ROUTERJSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 ROUTERJSON=$(echo "$ROUTERJSON" | ./jq --argjson a "$ROUTERSCHEMA" \
     '.config.schema = $a')
@@ -58,7 +58,7 @@ if [ ! -z "$DATADBSIZE" ] ; then
         DBSIZE "$DATADBSIZE")
 fi
 cd "$MYPATH/${DATAJSONDIR}"
-USERJSON=$(bash make.sh)
+USERJSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 makeDSA "$ENVNAME" "$DXANAME" "$DATANAME" \
     "$USERJSON" "$LDAPHOST" "$DATAPORT"
@@ -105,7 +105,7 @@ if [ ! -z "$SMPSDBSIZE" ] ; then
         DBSIZE "$SMPSDBSIZE")
 fi
 cd "$MYPATH/${SMPSJSONDIR}"
-SMPSJSON=$(bash make.sh)
+SMPSJSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 makeDSA "$ENVNAME" "$DXANAME" "$SMPSNAME" \
     "$SMPSJSON" "$LDAPHOST" "$SMPSPORT"
@@ -126,7 +126,7 @@ if [ ! -z "$SMSSDBSIZE" ] ; then
         DBSIZE "$SMSSDBSIZE")
 fi
 cd "$MYPATH/${SMSSJSONDIR}"
-SMSSJSON=$(bash make.sh)
+SMSSJSON=$(bash make.sh "$DXANAME")
 cd "$HOMEDIR"
 makeDSA "$ENVNAME" "$DXANAME" "$SMSSNAME" \
     "$SMSSJSON" "$LDAPHOST" "$SMSSPORT"
