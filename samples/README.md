@@ -7,7 +7,7 @@
 	* Directory Manager are installed.
 * datadsa -- creates a DATA DSA base on defdata
 * defdata -- to obtain the JSON object of the default DATA DSA
-	* created by the base example.
+	* through the dxagent in the registrar environment
 * defrouter -- to obtain the JSON object of the default Router DSA
 	* created by the base example.
 * envdxagent -- create a dxagent in a given environmet
