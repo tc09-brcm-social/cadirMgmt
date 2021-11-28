@@ -1,0 +1,12 @@
+jq
+jq.exe
+authn
+[0-9]*.json
+[0-9][a-z0-9.]*.json
+[0-9]*.temp
+[0-9]*.ldif
+cadirCurl
+#dxagents
+#dsas
+#accesscontrols
+#schemas
