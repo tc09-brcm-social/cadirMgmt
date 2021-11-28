@@ -2,12 +2,6 @@
 MYPATH=$(cd $(dirname "$0"); pwd)
 cd "$MYPATH"/..
 . "$MYPATH/env.shlib"
-if [ -z "$ADMINPASS" ] ; then
-    >&2 echo "Modify the $MYPATH/env.shlib"
-    >&2 echo to set the password and other parameters
-    >&2 echo to connect to the Directory Manager.
-    exit 1
-fi
 #
 ## jq
 #
@@ -24,13 +18,37 @@ fi
 #
 ## symlinks
 #
-ln -s environments/dxagents/dsas
-ln -s environments/dxagents
-ln -s environments/dxagents/schemas
-ln -s environments/dxagents/accesscontrols
+makesym() {
+    local _srcfile=$1
+    local _file=$2
+    if [ -f "$_file" ] || [ -d "$_file" ] ; then
+        >&2 echo "$_file exits, skipped ..."
+    else
+        >&2 echo "Making symlink to $_file"
+        ln -s "$_srcfile" "$_file"
+    fi
+    }
+makesym environments/dxagents/dsas dsas
+makesym environments/dxagents dxagents
+makesym environments/dxagents/schemas schemas
+makesym environments/dxagents/accesscontrols accesscontrols
+#
+## cadirCurl and jq
+#
+if [ -f cadirCurl ] || [ -d cadirCurl ] ; then
+    cd cadirCurl
+    makesym ../jq jq
+    cd ..
+fi
 #
 ## authn
 #
+if [ -z "$ADMINPASS" ] ; then
+    >&2 echo "!!! Warning ... Modify the $MYPATH/env.shlib"
+    >&2 echo to set the password and other parameters
+    >&2 echo to connect to the Directory Manager.
+    exit 1
+fi
 if [ -f authn ] ; then
     >&2 echo "Authentication module authn exits, not overwriting ..."
 else
