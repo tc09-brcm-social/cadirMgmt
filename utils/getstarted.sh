@@ -3,14 +3,31 @@ MYPATH=$(cd $(dirname "$0"); pwd)
 cd "$MYPATH"/..
 . "$MYPATH/env.shlib"
 #
+## isWindow
+#
+isWindow() {
+    UNAME=$(uname)
+    if [[ "$UNAME" == "MINGW"* ]] ; then
+	echo 0
+    else
+	echo 1
+    fi	
+    }
+#
 ## jq
 #
 if [ ! -f jq ] ; then
    JQPATH=$(which jq)
    if [ -z "$JQPATH" ] ; then
       >&2 echo "downloading jq"
-      curl -o jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-      chmod +x jq
+      if [ $(isWindow) -eq 0 ] ; then
+         curl -o jq.exe -L \
+            https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe
+      else
+         curl -o jq -L \
+	    https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+         chmod +x jq
+      fi
    else
       ln -s "$JQPATH"
    fi
@@ -18,28 +35,12 @@ fi
 #
 ## symlinks
 #
-makesym() {
-    local _srcfile=$1
-    local _file=$2
-    if [ -f "$_file" ] || [ -d "$_file" ] ; then
-        >&2 echo "$_file exits, skipped ..."
-    else
-        >&2 echo "Making symlink to $_file"
-        ln -s "$_srcfile" "$_file"
-    fi
-    }
-makesym environments/dxagents/dsas dsas
-makesym environments/dxagents dxagents
-makesym environments/dxagents/schemas schemas
-makesym environments/dxagents/accesscontrols accesscontrols
+bash "$MYPATH/makesyms.sh"
 #
-## cadirCurl and jq
+## intdxagent
 #
-if [ -f cadirCurl ] || [ -d cadirCurl ] ; then
-    cd cadirCurl
-    makesym ../jq jq
-    cd ..
-fi
+bash "$MYPATH/intdxagent.sh"
+cd "$MYPATH"/..
 #
 ## authn
 #
