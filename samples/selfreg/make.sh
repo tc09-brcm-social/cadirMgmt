@@ -35,7 +35,6 @@ if ! EXIST=$(bash dxagents/exist.sh "$ENVNAME" "$DXAGENT"); then
        DXHOME="/opt/CA/Directory/dxserver"
     fi
     DXAHOME=$(bashPath "$DXHOME")/dxagent
-    >&2 echo "$DXAHOME"
     if ! EXIST=$(bash dxagents/exist.sh "$ENVNAME" "$DXAGENT"); then
        HOST="$DXAHOST"
        CAPEM="$DXAHOME/openssl-ca/CA/certs/ca.pem"
@@ -50,7 +49,7 @@ fi
 echo "$EXIST" | bash dxagents/cleanse.sh
 DXAHOST=$(echo "$EXIST" | ./jq -r '.host')
 VER=$(bash dxagents/about.sh "$ENVNAME" "$DXAGENT" | \
-      jq -r '.version' | awk '{print $2}')
+      ./jq -r '.version' | awk '{print $2}')
 #
 # Default Data DSA
 #
