@@ -1,5 +1,5 @@
 #!/bin/bash
-MYPATH=$(cd $(dirname "0"); pwd)
+MYPATH=$(cd $(dirname "$0"); pwd)
 bash "${MYPATH}"/makeenvlib.sh; STATUS=$?
 if [ "$STATUS" -ne 0 ]; then
     exit 1
