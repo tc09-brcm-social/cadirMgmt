@@ -1,0 +1,56 @@
+# ==============================
+#   CA Directory Response File
+# ==============================
+# 14.1.00 build 15741
+# Fri May 31 22:18:29 UTC 2019
+
+# User parameters
+INSTUSER=root
+DXUSER=dsa
+DXSHELL=/bin/bash
+DXUID=
+DXGROUP=etrdir
+DXGID=
+
+# Install parameters
+INSTALLDX=y
+INSTALLDOC=
+INSTALLDXAGENT=y
+SETUID=n
+LEGACY_SETUID=
+DXMASTERKEYPASS=randomPass
+
+# Location parameters
+ETDIRHOME=/opt/CA/Directory
+DXHOME=/opt/CA/Directory/dxserver
+CAPKILOC=/opt/CA/SharedComponents
+
+# DXagent parameters
+DXAGENTCLIENT=dxagent
+DXAGENTPORT=9443
+DXAGENTPASS=CAdemo123
+
+# Upgrade parameters
+BACKUPBIN=
+BACKUPLOC=
+RESTARTDSAS=
+
+# Management UI
+INSTALLUI=y
+UIWEBPORT=3000
+USEOWNWEBCERT=n
+UIWEBCERTPATH=/opt/CA/Directory/management-ui/out/webservercert.pem
+UIWEBPRIVKEYPATH=/opt/CA/Directory/management-ui/out/webservercert.key
+UIWEBCACERTPATH=/opt/CA/Directory/management-ui/CA/certs/ca.pem
+UIDSAPORTLOCAL=10389
+ADMINUSERPWD=CAdemo123!
+
+# Monitoring
+UIDSAMONPORTLOCAL=11389
+NODEJSHOSTNAME=
+
+#SCIM
+SCIMPORT=3100
+SCIMCERTPATH=/opt/CA/Directory/management-ui/out/scimclientcert.pem
+SCIMPRIVKEYPATH=/opt/CA/Directory/management-ui/out/scimclientcert.key
+
