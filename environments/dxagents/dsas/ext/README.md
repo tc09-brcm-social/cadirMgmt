@@ -8,6 +8,7 @@
 	* of the JSON DSA object
 * jknowledge.sh DSA -- output the DSA knowledge in the DSA JSON
 	* object, return as an object, not array 
+* jports.sh -- retrieve the ports info from the input
 * jrmwrite.sh DSA -- remove DSA from the write-precedence list
 	* of the JSON DSA object
 * jshowpeers.sh -- show DSA peers in the DSA JSON object
