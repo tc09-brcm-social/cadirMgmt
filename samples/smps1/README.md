@@ -15,4 +15,5 @@ by a SiteMinder policy server.
 * startall.sh -- to start all DSAs in this set
 * stopall.sh -- to stop all DSAs in this set
 * status.sh -- to check status of all DSAs in this set
+* ports.sh -- show ports used
 * etrust.dxc, netegrity.dxc -- are copied from SiteMinder 12.8.
