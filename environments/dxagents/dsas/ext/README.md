@@ -6,6 +6,7 @@
 	* to the DSA1 write-precedence list
 * jaddwrite.sh DSA -- add DSA to the write-prcedence list
 	* of the JSON DSA object
+* jdecoderaw.sh -- base64 decode .config.raw
 * jknowledge.sh DSA -- output the DSA knowledge in the DSA JSON
 	* object, return as an object, not array 
 * jports.sh -- retrieve the ports info from the input
