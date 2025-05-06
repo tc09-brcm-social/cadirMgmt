@@ -47,33 +47,36 @@ if ! EXIST=$(bash dxagents/exist.sh "$ENVNAME" "$DXAGENT"); then
     fi
 fi
 echo "$EXIST" | bash dxagents/cleanse.sh
-DXAHOST=$(echo "$EXIST" | ./jq -r '.host')
-VER=$(bash dxagents/about.sh "$ENVNAME" "$DXAGENT" | \
-      ./jq -r '.version' | awk '{print $2}')
-#
-# Default Data DSA
-#
-DSA=default.${VER}${TEST}
-. "$MYPATH/defenv.shlib"
-if [ -z "$LDAPHOST" ] ; then
-    LDAPHOST="$DXAHOST"
+TRUE=true
+if [ "${DEFDSAS,,}" = "${TRUE,,}" ]; then
+    DXAHOST=$(echo "$EXIST" | ./jq -r '.host')
+    VER=$(bash dxagents/about.sh "$ENVNAME" "$DXAGENT" | \
+          ./jq -r '.version' | awk '{print $2}')
+    #
+    # Default Data DSA
+    #
+    DSA=default.${VER}${TEST}
+    . "$MYPATH/defenv.shlib"
+    if [ -z "$LDAPHOST" ] ; then
+        LDAPHOST="$DXAHOST"
+    fi
+    if ! EXIST=$(bash dsas/exist.sh "$ENVNAME" "$DXAGENT" "$DSA"); then
+        >&2 echo "making $ENVNAME" "$DXAGENT" "$DSA"
+        JSON=$$.json
+        bash "dsas/temp/default.temp" "$DSA" "$LDAPHOST" "$PORTD" > "$JSON"
+        EXIST=$(bash dsas/create.sh "$ENVNAME" "$DXAGENT" "$JSON")
+        bash dsas/emptydb.sh "$ENVNAME" "$DXAGENT" "$DSA"
+    fi
+    echo "$EXIST" | bash dsas/cleanse.sh
+    #
+    # Default Router DSA
+    #
+    DSA=defrouter.${VER}${TEST}
+    if ! EXIST=$(bash dsas/exist.sh "$ENVNAME" "$DXAGENT" "$DSA"); then
+        >&2 echo "making $ENVNAME" "$DXAGENT" "$DSA"
+        JSON=$$.json
+        bash "dsas/temp/defrouter.temp" "$DSA" "$LDAPHOST" "$PORTR" > "$JSON"
+        EXIST=$(bash dsas/create.sh "$ENVNAME" "$DXAGENT" "$JSON")
+    fi
+    echo "$EXIST" | bash dsas/cleanse.sh
 fi
-if ! EXIST=$(bash dsas/exist.sh "$ENVNAME" "$DXAGENT" "$DSA"); then
-    >&2 echo "making $ENVNAME" "$DXAGENT" "$DSA"
-    JSON=$$.json
-    bash "dsas/temp/default.temp" "$DSA" "$LDAPHOST" "$PORTD" > "$JSON"
-    EXIST=$(bash dsas/create.sh "$ENVNAME" "$DXAGENT" "$JSON")
-    bash dsas/emptydb.sh "$ENVNAME" "$DXAGENT" "$DSA"
-fi
-echo "$EXIST" | bash dsas/cleanse.sh
-#
-# Default Router DSA
-#
-DSA=defrouter.${VER}${TEST}
-if ! EXIST=$(bash dsas/exist.sh "$ENVNAME" "$DXAGENT" "$DSA"); then
-    >&2 echo "making $ENVNAME" "$DXAGENT" "$DSA"
-    JSON=$$.json
-    bash "dsas/temp/defrouter.temp" "$DSA" "$LDAPHOST" "$PORTR" > "$JSON"
-    EXIST=$(bash dsas/create.sh "$ENVNAME" "$DXAGENT" "$JSON")
-fi
-echo "$EXIST" | bash dsas/cleanse.sh
